@@ -85,7 +85,7 @@ python app.py
 ## 🖼️ Screenshots
 
 
-| ![Loading](1.png) | ![Home Screen](2.png) | ![Recommendations](3.png) |
+| ![Loading](intro.png) | ![Home Screen](home.png) | ![Movie Summary](info.png) |
 
 
 ## 🌐 External APIs Used
