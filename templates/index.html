@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CineX</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="introOverlay">
+        <div class="intro-text">
+            <span>C</span><span>i</span><span>n</span><span>e</span><span> </span><span>X</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h2>{{ greeting }}</h2>
+        <h1>Welcome to Cine X 🎬</h1>
+        <h3>Get movie recommendations!</h3>
+        <div class="grid">
+            {% for movie in popular_movies %}
+            <div class="card">
+                <img src="{{ movie.poster }}" alt="Poster">
+                <h4>{{ movie.title }}</h4>
+                {% if movie.trailer %}
+                <a class="trailer-btn" href="{{ movie.trailer }}" target="_blank">🎬 Trailer</a><br>
+                {% endif %}
+                <button class="info-btn" onclick="showWikiModal('{{ movie.title }}')">ℹ️ Info</button>
+            </div>
+            {% endfor %}
+        </div>
+
+        <label><input type="radio" name="searchType" value="name" checked> Search by Movie Name</label>
+        <label><input type="radio" name="searchType" value="genre"> Search by Genre</label>
+
+        <div style="display:inline-block; position:relative;">
+            <input type="text" id="movieInput" placeholder="Type movie name..." autocomplete="off">
+            <div id="autocompleteList" class="autocomplete-items"></div>
+        </div>
+
+        <select id="genreSelect" style="display:none;">
+            {% for genre in genres %}
+            <option>{{ genre }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="range" id="numSlider" min="1" max="10" value="5"> How Many Recommendation?
+        <span id="numValue">5</span>
+
+        <button onclick="getRecommendations()">🎥 Show Recommendation</button>
+
+        <div id="loading"><div class="spinner"></div></div>
+        <div id="results"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="wikiModal">
+        <h3 id="wikiTitle"></h3>
+        <div id="movieDetails" style="margin-bottom: 10px;">
+            <span id="releaseYear"></span> |
+            <span id="boxOffice"></span> |
+            <span id="imdbRating"></span>
+        </div>
+        <p id="wikiSummary"></p>
+        <a id="wikiLink" href="#" target="_blank">Read more on Wikipedia</a><br><br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+    <div id="modalOverlay" onclick="closeModal()"></div>
+
+    <script>
+        const searchTypeRadios = document.getElementsByName("searchType");
+        const genreSelect = document.getElementById("genreSelect");
+        const movieInput = document.getElementById("movieInput");
+        const numSlider = document.getElementById("numSlider");
+        const numValue = document.getElementById("numValue");
+        const resultsDiv = document.getElementById("results");
+        const autocompleteList = document.getElementById("autocompleteList");
+        const loadingDiv = document.getElementById("loading");
+
+        const movieTitles = {{ movies|tojson }};
+        numSlider.oninput = () => numValue.textContent = numSlider.value;
+
+        searchTypeRadios.forEach(radio => {
+            radio.onchange = () => {
+                movieInput.style.display = radio.value === "name" ? "inline-block" : "none";
+                genreSelect.style.display = radio.value === "genre" ? "inline-block" : "none";
+            };
+        });
+
+        function autocomplete(inp, arr) {
+            inp.addEventListener("input", function () {
+                const val = this.value;
+                autocompleteList.innerHTML = "";
+                if (!val) return;
+                arr.forEach(movie => {
+                    if (movie.toLowerCase().startsWith(val.toLowerCase())) {
+                        const item = document.createElement("div");
+                        item.innerHTML = "<strong>" + movie.substr(0, val.length) + "</strong>" + movie.substr(val.length);
+                        item.onclick = () => {
+                            inp.value = movie;
+                            autocompleteList.innerHTML = "";
+                        };
+                        autocompleteList.appendChild(item);
+                    }
+                });
+            });
+
+            document.addEventListener("click", function (e) {
+                if (e.target !== inp) autocompleteList.innerHTML = "";
+            });
+        }
+
+        autocomplete(movieInput, movieTitles);
+
+        async function getRecommendations() {
+            resultsDiv.innerHTML = "";
+            loadingDiv.style.display = "block";
+            const type = document.querySelector('input[name="searchType"]:checked').value;
+            const num = numSlider.value;
+
+            let endpoint, data;
+            if (type === "name") {
+                const movieName = movieInput.value.trim();
+                if (!movieName) {
+                    alert("Please enter a movie name.");
+                    loadingDiv.style.display = "none";
+                    return;
+                }
+                endpoint = "/recommend";
+                data = { movie: movieName, num };
+            } else {
+                endpoint = "/genre";
+                data = { genre: genreSelect.value, num };
+            }
+
+            try {
+                const response = await fetch(endpoint, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+
+                const movies = await response.json();
+                if (!movies || movies.length === 0) {
+                    resultsDiv.innerHTML = "<p style='color:red; font-weight:bold;'>❌ No recommendations found.</p>";
+                } else {
+                    let html = "<div class='grid'>";
+                    movies.forEach(m => {
+                        html += 
+                            `<div class="card">
+                                <img src="${m.poster}" alt="Poster">
+                                <h4>${m.title}</h4>
+                                ${m.trailer ? `<a class="trailer-btn" href="${m.trailer}" target="_blank">🎬 Trailer</a><br>` : ""}
+                                <button class="info-btn" onclick="showWikiModal('${m.title}')">ℹ️ Info</button>
+                            </div>`;
+                    });
+                    html += "</div>";
+                    resultsDiv.innerHTML = html;
+                }
+            } catch (err) {
+                console.error("Error fetching recommendations:", err);
+                resultsDiv.innerHTML = "<p style='color:red; font-weight:bold;'>⚠️ An error occurred while fetching recommendations.</p>";
+            } finally {
+                loadingDiv.style.display = "none";
+            }
+        }
+
+        async function fetchOMDbInfo(title) {
+            const apiKey = "443bab5c";
+            const url = `https://www.omdbapi.com/?t=${encodeURIComponent(title)}&apikey=${apiKey}`;
+            try {
+                const res = await fetch(url);
+                const json = await res.json();
+                return {
+                    year: json.Year || 'N/A',
+                    boxOffice: json.BoxOffice || 'N/A',
+                    imdb: json.imdbRating || 'N/A'
+                };
+            } catch (e) {
+                console.warn("OMDb info fetch failed:", e);
+                return { year: 'N/A', boxOffice: 'N/A', imdb: 'N/A' };
+            }
+        }
+
+        async function showWikiModal(title) {
+            document.getElementById("wikiTitle").innerText = title;
+            document.getElementById("movieDetails").style.display = 'none';
+            document.getElementById("wikiSummary").innerText = "Loading info...";
+            document.getElementById("wikiLink").href = `https://en.wikipedia.org/wiki/${encodeURIComponent(title.replace(/ /g, "_"))}`;
+            document.getElementById("modalOverlay").style.display = "block";
+            document.getElementById("wikiModal").style.display = "block";
+
+            const [wikiRes, omdbInfo] = await Promise.all([
+                fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`)
+                    .then(r => r.json())
+                    .catch(() => ({ extract: "No summary available." })),
+                fetchOMDbInfo(title)
+            ]);
+
+            document.getElementById("wikiSummary").innerText = wikiRes.extract || "No summary available.";
+            document.getElementById("releaseYear").innerText = `Year: ${omdbInfo.year}`;
+            document.getElementById("boxOffice").innerText = `Box Office: ${omdbInfo.boxOffice}`;
+            document.getElementById("imdbRating").innerText = `IMDb: ${omdbInfo.imdb}`;
+            document.getElementById("movieDetails").style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById("modalOverlay").style.display = "none";
+            document.getElementById("wikiModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
