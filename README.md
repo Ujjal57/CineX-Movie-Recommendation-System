@@ -1,14 +1,17 @@
 # 🎬 Movie Recommender System
 
-A machine learning-based movie recommendation system built with Python and Streamlit. This system suggests movies based on user input (either by movie title or genre) and provides posters and trailers fetched using the TMDB API.
+CineX is a web-based movie recommendation system built using **Flask**, **Python**, **HTML/CSS/JavaScript**, and the **TMDB + OMDb + Wikipedia APIs**. It provides personalized movie suggestions either by title or genre, along with trailers, posters, summaries, box office data, and IMDb ratings.
 
 ## 🚀 Features
 
-- 🔍 **Search by Movie Name** – Get recommendations based on a specific movie.
-- 🎭 **Search by Genre** – Find movies within a selected genre.
-- 📽️ **Movie Posters & Trailers** – Fetch movie images and trailers from TMDB.
-- 🎯 **Machine Learning-Based Recommendations** – Uses cosine similarity for recommendations.
-- 🌎 **Real-Time Greeting System** – Displays a greeting message based on the time of the day.
+- 🔍 **Search by Movie Name** – Get recommendations based on a movie you love.
+- 🎭 **Search by Genre** – Discover top movies from a specific genre.
+- 📽️ **Posters & Trailers** – Fetch movie posters and YouTube trailers via TMDB.
+- 🧠 **ML-Powered Recommendations** – Uses cosine similarity to recommend similar movies.
+- 📊 **Movie Info Modals** – Shows Wikipedia summary, IMDb ratings, and Box Office collection.
+- 🌞 **Dynamic Greeting** – Displays good morning/afternoon/evening message based on time.
+- 🎨 **Animated UI** – Beautiful CSS animations, responsive grid layout, and loading spinners.
+- 💡 **Autocomplete Suggestions** – Real-time suggestion box while typing movie names.
 
 ---
 
@@ -63,7 +66,7 @@ Place `movie_list.pkl` and `similarity.pkl` inside the `model/` directory.
 ### 🔹 5. Run the Application
 
 ```bash
-python -m streamlit run app.py
+python app.py
 ```
 
 ---
@@ -85,26 +88,32 @@ python -m streamlit run app.py
 | ![Loading](1.png) | ![Home Screen](2.png) | ![Recommendations](3.png) |
 
 
-## 🔑 API Usage
+## 🌐 External APIs Used
 
-This project uses [TMDB API](https://www.themoviedb.org/documentation/api) to fetch movie details.
+- 🎬 **TMDB API** – for movie posters and trailers  
+  🔗 [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
 
-- To use this API, get an API key from TMDB.
-- Replace `TMDB_API_KEY` in `app.py` with your own key.
+- 📊 **OMDb API** – for IMDb rating, Box Office, and release year  
+  🔗 [https://www.omdbapi.com/](https://www.omdbapi.com/)
 
-```python
-TMDB_API_KEY = "your_tmdb_api_key_here"
-```
-
----
-
-## 🔮 Future Enhancements
-
-- ✅ Add personalized recommendations based on user history.
-- ✅ Improve UI/UX with better styling and animations.
-- ✅ Implement user authentication (Firebase) for a personalized experience.
+- 📚 **Wikipedia API** – for movie summaries  
+  🔗 [https://www.mediawiki.org/wiki/API:Main_page](https://www.mediawiki.org/wiki/API:Main_page)
 
 ---
+## 🔮 Future Scope
+
+- ✅ **Add Firebase-based user login**  
+  Implement secure user authentication using Firebase Authentication for login, signup, and session management.
+
+- ✅ **Save user preferences/history for better suggestions**  
+  Use Firebase Firestore or Realtime Database to track user activity and personalize future recommendations based on previously liked or searched movies.
+
+- ✅ **Add Hindi/local language support**  
+  Integrate language translation APIs or datasets to provide UI and recommendations in Hindi and other regional languages.
+
+- ✅ **Improve loading animation & UI**  
+  Enhance user experience with advanced CSS animations, parallax effects, and smoother transitions during data loading and movie fetching.
+
 
 ## 👨‍💻 Contributors
 
