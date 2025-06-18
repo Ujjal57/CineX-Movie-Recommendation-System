@@ -85,17 +85,17 @@ python app.py
 ## 🖼️ Screenshots
 
 <p>
-  <img src="intro.png" alt="Intro Animation" width="300"/>
+  <img src="intro.png" alt="Intro Animation" width="500"/>
   <br><em>Loading</em>
 </p>
 
 <p>
-  <img src="home.png" alt="Home Page" width="300"/>
+  <img src="home.png" alt="Home Page" width="500"/>
   <br><em>Home Page</em>
 </p>
 
 <p>
-  <img src="info.png" alt="Cart Page" width="300"/>
+  <img src="info.png" alt="Cart Page" width="500"/>
   <br><em>Info Page</em>
 </p>
 
