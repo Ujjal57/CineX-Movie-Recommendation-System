@@ -105,13 +105,8 @@ python app.py
 ## 🌐 External APIs Used
 
 - 🎬 **TMDB API** – for movie posters and trailers  
-  🔗 [https://www.themoviedb.org/documentation/api](https://www.themoviedb.org/documentation/api)
-
-- 📊 **OMDb API** – for IMDb rating, Box Office, and release year  
-  🔗 [https://www.omdbapi.com/](https://www.omdbapi.com/)
-
+- 📊 **OMDb API** – for IMDb rating, Box Office, and release year 
 - 📚 **Wikipedia API** – for movie summaries  
-  🔗 [https://www.mediawiki.org/wiki/API:Main_page](https://www.mediawiki.org/wiki/API:Main_page)
 
 ---
 ## 🔮 Future Scope
