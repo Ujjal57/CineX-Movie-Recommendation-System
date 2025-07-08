@@ -126,4 +126,4 @@ python app.py
 
 ## 👨‍💻 Contributors
 
-- **Ujjal** - *Developer*
+- **Ujjal Kumar Dey**
