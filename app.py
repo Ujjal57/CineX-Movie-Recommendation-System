@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 
-TMDB_API_KEY = "8265bd1679663a7ea12ac168da84d2e8"
+TMDB_API_KEY = ""
 
 # Load data
 movies_df = pd.read_csv("model/movies.csv")
