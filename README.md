@@ -2,6 +2,10 @@
 
 CineX is a web-based movie recommendation system built using **Flask**, **Python**, **HTML/CSS/JavaScript**, and the **TMDB + OMDb + Wikipedia APIs**. It provides personalized movie suggestions either by title or genre, along with trailers, posters, summaries, box office data, and IMDb ratings.
 
+## ⚠️ Note on Source Code
+
+> 🔒 **Disclaimer:** The full implementation of `app.py`, including core recommendation logic, TMDB/OMDb/Wikipedia API integration, and model loading, has been **intentionally omitted** from the public repository to protect proprietary logic, API usage, and trained data files.  
+
 ## 🚀 Features
 
 - 🔍 **Search by Movie Name** – Get recommendations based on a movie you love.
