@@ -102,7 +102,7 @@ python app.py
 </p>
 
 <p align="center">
-  <img src="deatil.png" alt="Info Page" width="500"/>
+  <img src="detail.png" alt="Info Page" width="500"/>
   <br><em>Movie Info</em>
 </p>
 
