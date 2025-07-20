@@ -1,6 +1,6 @@
 # 🎬 Movie Recommender System
 
-CineX is a web-based movie recommendation system built using **Flask**, **Python**, **HTML/CSS/JavaScript**, and the **TMDB + OMDb + Wikipedia APIs**. It provides personalized movie suggestions either by title or genre, along with trailers, posters, summaries, box office data, and IMDb ratings.
+CineX is a web-based movie recommendation system built using **Flask**, **Python**, **HTML/CSS/JavaScript**, and the **TMDB + OMDb **. It provides personalized movie suggestions either by title or genre, along with trailers, posters, summaries, TMDB ratingd and IMDb ratings.
 
 ## ⚠️ Note on Source Code
 
@@ -30,11 +30,10 @@ CineX is a web-based movie recommendation system built using **Flask**, **Python
 │   ├── credits.csv           # Movie credits dataset
 |── static/
 |   ├── styles.css            # CSS for frontend styling
-|── templates/
 |   ├── index.html            # HTML template for the homepage
-│── app.py                    # Main Streamlit application
-│── requirements.txt           # Python dependencies
-│── README.md                  # Project documentation
+│── server.py                 # Main Streamlit application
+│── requirements.txt          # Python dependencies
+│── README.md                 # Project documentation
 |── notebook86c26b4f17.ipynb
 ```
 
@@ -82,7 +81,6 @@ python app.py
 3. **Machine Learning Model**: Uses a precomputed similarity matrix (`similarity.pkl`).
 4. **Movie Recommendation**: Finds similar movies based on cosine similarity.
 5. **Poster & Trailer Fetching**: Calls TMDB API to get movie details.
-6. **Streamlit UI**: Provides an interactive web-based interface.
 
 ---
 
@@ -94,13 +92,18 @@ python app.py
 </p>
 
 <p align="center">
-  <img src="homepage.png" alt="Home Page" width="500"/>
+  <img src="main.png" alt="Home Page" width="500"/>
   <br><em>Home Page</em>
 </p>
 
 <p align="center">
-  <img src="info.png" alt="Info Page" width="500"/>
-  <br><em>Info Page</em>
+  <img src="dash.png" alt="Info Page" width="500"/>
+  <br><em>Movie Recommendations</em>
+</p>
+
+<p align="center">
+  <img src="deatil.png" alt="Info Page" width="500"/>
+  <br><em>Movie Info</em>
 </p>
 
 
@@ -109,8 +112,7 @@ python app.py
 ## 🌐 External APIs Used
 
 - 🎬 **TMDB API** – for movie posters and trailers  
-- 📊 **OMDb API** – for IMDb rating, Box Office, and release year 
-- 📚 **Wikipedia API** – for movie summaries  
+- 📊 **OMDb API** – for IMDb rating, Box Office, and release year.
 
 ---
 ## 🔮 Future Scope
