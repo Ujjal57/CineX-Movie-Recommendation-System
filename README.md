@@ -31,7 +31,7 @@ CineX is a web-based movie recommendation system built using **Flask**, **Python
 |── static/
 |   ├── styles.css            # CSS for frontend styling
 |   ├── index.html            # HTML template for the homepage
-│── server.py                 # Main Streamlit application
+│── server.py                 # Main application
 │── requirements.txt          # Python dependencies
 │── README.md                 # Project documentation
 |── notebook86c26b4f17.ipynb
