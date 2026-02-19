@@ -1,6 +1,6 @@
 # 🎬 Movie Recommender System
 
-CineX is a web-based movie recommendation system built using **Flask**, **Python**, **HTML/CSS/JavaScript**, and the **TMDB**. It provides personalized movie suggestions either by title or genre, along with trailers, posters, summaries, TMDB ratingd and IMDb ratings.
+AI-powered movie recommendation web application built with Flask and TMDB API that suggests movies based on title or genre, displaying posters, trailers, summaries, TMDB and IMDb ratings with an interactive UI. The frontend is deployed on Vercel and the backend is containerized using Docker and deployed on Hugging Face Spaces.
 
 ## ⚠️ Note on Source Code
 
