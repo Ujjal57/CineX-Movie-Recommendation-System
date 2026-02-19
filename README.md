@@ -86,24 +86,20 @@ python app.py
 ## 🖼️ Screenshots
 
 <p align="center">
-  <img src="intro.png" alt="Intro Animation" width="500"/>
-  <br><em>Loading</em>
-</p>
-
-<p align="center">
-  <img src="main.png" alt="Home Page" width="500"/>
+  <img src="images/main.png" alt="Intro Animation" width="500"/>
   <br><em>Home Page</em>
 </p>
 
 <p align="center">
-  <img src="dash.png" alt="Info Page" width="500"/>
-  <br><em>Movie Recommendations</em>
+  <img src="images/rec.png" alt="Home Page" width="500"/>
+  <br><em>Recommendation Page</em>
 </p>
 
 <p align="center">
-  <img src="detail.png" alt="Info Page" width="500"/>
+  <img src="images/detail.png" alt="Info Page" width="500"/>
   <br><em>Movie Info</em>
 </p>
+
 
 
 
