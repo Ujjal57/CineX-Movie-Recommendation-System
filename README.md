@@ -112,16 +112,16 @@ python app.py
 ## 🔮 Future Scope
 
 - ✅ **Add Firebase-based user login**  
-- Implement secure user authentication using Firebase Authentication for login, signup, and session management.
+  Implement secure user authentication using Firebase Authentication for login, signup, and session management.
 
 - ✅ **Save user preferences/history for better suggestions**  
-- Use Firebase Firestore or Realtime Database to track user activity and personalize future recommendations based on previously liked or searched movies.
+  Use Firebase Firestore or Realtime Database to track user activity and personalize future recommendations based on previously liked or searched movies.
 
 - ✅ **Add Hindi/local language support**  
-- Integrate language translation APIs or datasets to provide UI and recommendations in Hindi and other regional languages.
+  Integrate language translation APIs or datasets to provide UI and recommendations in Hindi and other regional languages.
 
 - ✅ **Improve loading animation & UI**  
-- Enhance user experience with advanced CSS animations, parallax effects, and smoother transitions during data loading and movie fetching.
+  Enhance user experience with advanced CSS animations, parallax effects, and smoother transitions during data loading and movie fetching.
 
 
 ## 👨‍💻 Contributors
